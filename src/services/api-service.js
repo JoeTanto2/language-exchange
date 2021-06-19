@@ -39,3 +39,5 @@ export const loginUser = async (values) => {
 export const getUserById = async (id) => {
     return await api.get(`/api/use/${id}`, { data: { id } });
 };
+
+// todo add logout
