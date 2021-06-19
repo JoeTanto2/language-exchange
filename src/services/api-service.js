@@ -29,15 +29,15 @@ export const signupUser = async (values) => {
     formData.append('desired', JSON.stringify(desired));
     formData.append('avatar', avatar);
 
-    return await api.post('/api/register', { data: formData });
+    return await api.post('/api/register/', formData);
 };
 
 export const loginUser = async (values) => {
-    return await api.post('/api/login', { data: values });
+    return await api.post('/api/login/', { data: values });
 };
 
 export const getUserById = async (id) => {
-    return await api.get(`/api/use/${id}`, { data: { id } });
+    return await api.get(`/api/use/${ id }/`, { data: { id } });
 };
 
 // todo add logout
