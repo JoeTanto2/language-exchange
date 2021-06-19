@@ -1,0 +1,60 @@
+@import "../../styles/variables";
+
+.signup {
+
+}
+
+.signup-wrapper {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  select {
+    margin-bottom: 10px;
+  }
+}
+
+.signup-form-field {
+  margin-bottom: 10px;
+}
+
+.signup-form-error {
+  font-size: 13px;
+  color: red;
+}
+
+.signup-form-select-lang-search {
+  margin: 0;
+  padding: 5px;
+}
+
+.signup-form-select-lang-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.signup-form-select-lang-list-item {
+  padding: 5px;
+  border: 1px solid #000;
+  border-top: none;
+  cursor: pointer;
+
+  .signup:hover {
+    background-color: #c6ccc8;
+  }
+}
+
+.signup-form-submit {
+  margin: 10px auto 0;
+  padding: 10px 20px;
+}
