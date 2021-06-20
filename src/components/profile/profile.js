@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { getUserById } from '../../services/api-service';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../features/userSlice';
 
 import './profile.scss';
 import avatar from '../../assets/images/default-user-avatar.png';
 
 const Profile = () => {
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const [user, setUser] = useState(null);
     const [error, setError] = useState(false);
     const { id } = useParams();
     const history = useHistory();
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        if (!isAuthenticated) {
+            history.push('/login');
+            return;
+        }
+
         getUserById(id)
-            .then(data => {
-                console.log(data);
-                setUser(data);
-            })
-            .catch(() => setError(true));
+            .then(data => setUser(data))
+            .catch((error) => {
+                if (error.response.status === 401) {
+                    dispatch(logoutUser());
+                    history.push('/login');
+                }
+                setError(true);
+            });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     // todo add loading
