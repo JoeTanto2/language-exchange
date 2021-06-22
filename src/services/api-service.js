@@ -44,13 +44,13 @@ export const getUserById = async (id) => {
 };
 
 export const updateUserPassword = async (values) => {
-    return await api.post('', { data: values });
+    return await api.patch('/api/password_update/', { data: values });
 };
 
 export const updateUserInfo = async (values) => {
     const { name, sex, about, native, desired, avatar, id } = values;
     const formData = new FormData();
-    formData.append('id', id);
+    formData.append('user_id', id);
     formData.append('name', name);
     formData.append('sex', sex);
     formData.append('about', about);
@@ -58,5 +58,5 @@ export const updateUserInfo = async (values) => {
     formData.append('desired', JSON.stringify(desired));
     formData.append('avatar', avatar);
 
-    return await api.post('', formData);
+    return await api.patch('/api/profile_update/', formData);
 };
