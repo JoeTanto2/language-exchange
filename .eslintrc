@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "quotes": ["warn", "single"],
+    "object-curly-spacing": ["warn", "always"],
+    "semi": ["warn", "always"],
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "array-callback-return": "off"
+  }
+}
