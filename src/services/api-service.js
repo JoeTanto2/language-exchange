@@ -48,7 +48,6 @@ export const getUserById = async (id) => {
 
 export const updateUserPassword = async (values) => {
     return await api.put('/api/password_update/', { data: values });
-    return await api.patch('/api/password_update/', { data: values });
 };
 
 export const updateUserInfo = async (values) => {

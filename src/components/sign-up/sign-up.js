@@ -31,7 +31,7 @@ const SignUp = () => {
         }
     ];
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values, actions) => {
         setIsLoading(true);
 
         try {
@@ -43,10 +43,17 @@ const SignUp = () => {
         } catch(error) {
             setIsLoading(false);
 
-            if (error.response.data.errorMessage) {
-                setApiError(error.response.data.errorMessage);
+            // api error example
+            // actions.setStatus({
+            //     email: 'User with this email already exist'
+            // });
+            const errorMessage = error.response.non_field_errors;
+
+            if (errorMessage) {
+                setApiError(errorMessage);
             } else {
-                setApiError('Something went wrong, please try again');
+                // todo add handy error messages
+                setApiError('Not valid data, please try again');
             }
         }
     };
@@ -81,7 +88,7 @@ const SignUp = () => {
                     onSubmit={ handleSubmit }
                 >
                     {
-                        ({ setFieldValue, errors, touched }) => {
+                        ({ setFieldValue, errors, touched, status }) => {
                             return (
                                 <Form>
 
@@ -105,6 +112,14 @@ const SignUp = () => {
                                         type="email"
                                         placeholder="example@gmail.com"
                                     />
+
+
+                                    {/* api error example */}
+                                    {
+                                        status && status.email
+                                            ? <div className="signup-form-error">{ status.email }</div>
+                                            : null
+                                    }
 
                                     <MyTextInput
                                         label="Password:"
