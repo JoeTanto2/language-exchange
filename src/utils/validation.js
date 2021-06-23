@@ -17,8 +17,10 @@ export const validateSignup = values => {
         errors.email = 'Please enter a valid email';
     }
 
-    if (values.password.length < 6 || values.password.length > 60) {
-        errors.password = 'Your password must contain between 6 and 60 characters.';
+    if (values.password.length < 8 || values.password.length > 60) {
+        errors.password = 'Your password must contain between 8 and 60 characters.';
+    } else if (values.password.match(/^[0-9]+$/)) {
+        errors.password = ' Your password should not contain only numeric values';
     }
 
     if (values.password !== values.password2) {
@@ -47,8 +49,8 @@ export const validateLogin = values => {
         errors.username = 'Must be at least 4 characters';
     }
 
-    if (values.password.length < 6 || values.password.length > 60) {
-        errors.password = 'Your password must contain between 6 and 60 characters.';
+    if (values.password.length < 8 || values.password.length > 60) {
+        errors.password = 'Your password must contain between 8 and 60 characters.';
     }
 
     return errors;
@@ -57,12 +59,16 @@ export const validateLogin = values => {
 export const validateChangePassword = values => {
     const errors = {};
 
-    if (values.oldPassword.length < 6 || values.oldPassword.length > 60) {
-        errors.oldPassword = 'Your password must contain between 6 and 60 characters.';
+    if (values.oldPassword.length < 8 || values.oldPassword.length > 60) {
+        errors.oldPassword = 'Your password must contain between 8 and 60 characters.';
     }
 
-    if (values.newPassword.length < 6 || values.newPassword.length > 60) {
-        errors.newPassword = 'Your password must contain between 6 and 60 characters.';
+    if (values.newPassword.length < 8 || values.newPassword.length > 60) {
+        errors.newPassword = 'Your password must contain between 8 and 60 characters.';
+    } else if (values.newPassword.match(/^[0-9]+$/)) {
+        errors.newPassword = ' Your password should not contain only numeric values';
+    } else if (values.oldPassword === values.newPassword) {
+        errors.newPassword = 'Your new password should be different from old password';
     }
 
     if (values.newPassword !== values.newPassword2) {
