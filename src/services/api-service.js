@@ -41,10 +41,13 @@ export const loginUser = async (values) => {
 
 export const getUserById = async (id) => {
     return await api.get(`/api/user/${ id }`, { data: { id } });
+
+    return await api.get(`/api/use/${id}/`, { data: { id } });
+
 };
 
 export const updateUserPassword = async (values) => {
-    return await api.patch('/api/password_update/', { data: values });
+    return await api.put('/api/password_update/', { data: values });
 };
 
 export const updateUserInfo = async (values) => {

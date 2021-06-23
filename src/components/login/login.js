@@ -27,10 +27,11 @@ const Login = () => {
         } catch(error) {
             setIsLoading(false);
 
-            if (error.response.data.errorMessage) {
-                setApiError(error.response.data.errorMessage);
+            if (error.response.non_field_errors) {
+                setApiError(error.response.non_field_errors);
             } else {
-                setApiError('Something went wrong, please try again');
+                // todo add handy error messages
+                setApiError('Not valid credentials, please try again');
             }
         }
     };
