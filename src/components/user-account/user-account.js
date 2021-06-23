@@ -7,11 +7,11 @@ import ChangeUserInfo from '../change-user-info';
 import './user-account.scss';
 
 const UserAccount = () => {
-    const user = useSelector(state => state.user);
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const history = useHistory();
 
     useEffect(() => {
-        if (!user.isAuthenticated) {
+        if (!isAuthenticated) {
             history.push('/login');
         }
 
@@ -25,7 +25,7 @@ const UserAccount = () => {
 
                 <ChangePassword />
 
-                <ChangeUserInfo id={ user.info.id } />
+                <ChangeUserInfo />
             </div>
         </section>
     );
